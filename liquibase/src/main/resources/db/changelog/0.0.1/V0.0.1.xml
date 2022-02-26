@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2022-01-07 17:52:00" author="kbulychev">
+        <sqlFile path="db/changelog/0.0.1/sql/01-saga_transaction_create_table.sql" relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/0.0.1/sql/rollback/saga_transaction_create_table_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2022-01-07 17:53:00" author="kbulychev">
+        <sqlFile path="db/changelog/0.0.1/sql/02-transaction_log_create_table.sql" relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/0.0.1/sql/rollback/transaction_log_create_table_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2022-01-07 17:54:00" author="kbulychev">
+        <sqlFile path="db/changelog/0.0.1/sql/03-compensation_details_create_table.sql" relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/0.0.1/sql/rollback/compensation_details_create_table_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2022-01-07 17:56:00" author="kbulychev">
+        <sqlFile path="db/changelog/0.0.1/sql/04-quartz_tables.sql" relativeToChangelogFile="false"/>
+        <rollback></rollback>
+    </changeSet>
+
+    <changeSet id="2022-01-07 17:58:00" author="kbulychev">
+        <sqlFile path="db/changelog/0.0.1/sql/05-fired_saga_create_table.sql" relativeToChangelogFile="false"/>
+        <rollback></rollback>
+    </changeSet>
+
+
+</databaseChangeLog>

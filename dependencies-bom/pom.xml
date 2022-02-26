@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>saga-coordinator</artifactId>
+        <groupId>ru.kmao.saga</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dependencies-bom</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>11</java.version>
+        <kotlin.version>1.6.0</kotlin.version>
+        <hikaricp.version>5.0.0</hikaricp.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <kotlin-logging-jvm.version>2.1.21</kotlin-logging-jvm.version>
+    </properties>
+
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- https://mvnrepository.com/artifact/io.github.microutils/kotlin-logging-jvm -->
+            <dependency>
+                <groupId>io.github.microutils</groupId>
+                <artifactId>kotlin-logging-jvm</artifactId>
+                <version>${kotlin-logging-jvm.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>ru.kmao.saga</groupId>
+                <artifactId>saga-coordinator-dto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>ru.kmao.saga</groupId>
+                <artifactId>saga-coordinator-quartz</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>ru.kmao.saga</groupId>
+                <artifactId>saga-coordinator-liquibase</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${hikaricp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+<!--    <build>-->
+<!--        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>-->
+<!--        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>-->
+<!--        <pluginManagement>-->
+
+<!--            <plugins>-->
+<!--                <plugin>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                </plugin>-->
+<!--                <plugin>-->
+<!--                    <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                    <artifactId>kotlin-maven-plugin</artifactId>-->
+<!--                    <configuration>-->
+<!--                        <args>-->
+<!--                            <arg>-Xjsr305=strict</arg>-->
+<!--                            <arg>-Xemit-jvm-type-annotations</arg>-->
+<!--                        </args>-->
+<!--                        <compilerPlugins>-->
+<!--                            <plugin>spring</plugin>-->
+<!--                            <plugin>jpa</plugin>-->
+<!--                            &lt;!&ndash;                        <plugin>all-open</plugin>&ndash;&gt;-->
+<!--                        </compilerPlugins>-->
+<!--                        <jvmTarget>${java.version}</jvmTarget>-->
+<!--                        &lt;!&ndash;                    <pluginOptions>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>all-open:annotation=javax.persistence.Entity</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>all-open:annotation=javax.persistence.MappedSuperclass</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <option>all-open:annotation=javax.persistence.Embeddable</option>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                    </pluginOptions>&ndash;&gt;-->
+<!--                    </configuration>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>kapt</id>-->
+<!--                            <goals>-->
+<!--                                <goal>kapt</goal>-->
+<!--                            </goals>-->
+<!--                            <configuration>-->
+<!--                                <sourceDirs>-->
+<!--                                    <sourceDir>src/main/kotlin</sourceDir>-->
+<!--                                    <sourceDir>src/main/java</sourceDir>-->
+<!--                                </sourceDirs>-->
+<!--                                <annotationProcessorPaths>-->
+<!--                                    <annotationProcessorPath>-->
+<!--                                        <groupId>org.mapstruct</groupId>-->
+<!--                                        <artifactId>mapstruct-processor</artifactId>-->
+<!--                                        <version>${mapstruct.version}</version>-->
+<!--                                    </annotationProcessorPath>-->
+<!--                                </annotationProcessorPaths>-->
+<!--                            </configuration>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                    <dependencies>-->
+<!--                        <dependency>-->
+<!--                            <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                            <artifactId>kotlin-maven-allopen</artifactId>-->
+<!--                            <version>${kotlin.version}</version>-->
+<!--                        </dependency>-->
+<!--                        <dependency>-->
+<!--                            <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                            <artifactId>kotlin-maven-noarg</artifactId>-->
+<!--                            <version>${kotlin.version}</version>-->
+<!--                        </dependency>-->
+<!--                    </dependencies>-->
+<!--                </plugin>-->
+
+<!--                <plugin>-->
+<!--                    <groupId>org.apache.maven.plugins</groupId>-->
+<!--                    <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                    <executions>-->
+<!--                        &lt;!&ndash; Replacing default-compile as it is treated specially by maven &ndash;&gt;-->
+<!--                        <execution>-->
+<!--                            <id>default-compile</id>-->
+<!--                            <phase>none</phase>-->
+<!--                        </execution>-->
+<!--                        &lt;!&ndash; Replacing default-testCompile as it is treated specially by maven &ndash;&gt;-->
+<!--                        <execution>-->
+<!--                            <id>default-testCompile</id>-->
+<!--                            <phase>none</phase>-->
+<!--                        </execution>-->
+<!--                        <execution>-->
+<!--                            <id>java-compile</id>-->
+<!--                            <phase>compile</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>compile</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                        <execution>-->
+<!--                            <id>java-test-compile</id>-->
+<!--                            <phase>test-compile</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>testCompile</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+<!--            </plugins>-->
+<!--        </pluginManagement>-->
+<!--    </build>-->
+
+</project>

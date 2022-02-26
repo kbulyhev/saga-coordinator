@@ -1,0 +1,52 @@
+POST http://localhost:8080/saga/transaction/end
+Content-Type: application/json
+
+{
+  "transactionId": "3f0fea46-0710-4fb1-8a61-fe7f1bab164f",
+  "sagaId": "0d4f678b-f52e-4acf-a97b-000693b7a986",
+  "compensationPayload": "fake_data",
+  "logTransactionName": "end_transaction_1(order-service)",
+  "logStatus": "SUCCESS"
+}
+
+###
+POST http://localhost:8080/saga/transaction/start
+Content-Type: application/json
+
+{
+  "sagaId": "1fb75b08-ea7f-4f7c-bbb5-db1419e4ae86",
+  "parentTransactionId": "c727ac50-d6fc-4198-9d89-5ae285bc7a6b",
+  "serviceName": "payment-service",
+  "requestPayload": "fake_data",
+  "urlFrom": "http://order-service",
+  "urlTo": "http://payment-service",
+  "logTransactionName": "start_transaction_2(payment-service)",
+  "logStatus": "SUCCESS"
+}
+###
+POST http://localhost:8080/saga/start
+Content-Type: application/json
+
+{
+  "serviceName": "order-service",
+  "requestPayload": "fake_data",
+  "serviceUrl": "http://order-service"
+}
+
+###
+POST http://localhost:8080/saga/transaction/create
+Content-Type: application/json
+
+{
+  "transactionId": 30,
+  "sagaId": "e9e87c05-82eb-4522-bc47-f0fcfdde4cab",
+  "name": "Transaction_1",
+  "state": "START_SAGA",
+  "status": "SUCCESS",
+  "payload": "SUCCESS",
+  "rollbackPayload": "fake_data",
+  "parentTransactionId": 2,
+  "urlFrom": "fake_data",
+  "urlTo": "fake_data"
+}
+

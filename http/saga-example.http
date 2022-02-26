@@ -1,0 +1,9 @@
+POST http://localhost:8888/saga/start
+Content-Type: application/json
+
+{
+  "serviceName": null,
+  "compensationUrl": "fake_data"
+}
+
+###

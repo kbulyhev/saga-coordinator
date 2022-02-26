@@ -1,0 +1,87 @@
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 2
+    url: jdbc:postgresql://localhost:5432/saga_transactions
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        generate_statistics: true
+        jdbc:
+          batch_size: 100
+          order_inserts: true
+
+  liquibase:
+    enabled: false
+    change-log: classpath:/db/master.xml
+
+
+
+saga:
+  resttemplate:
+    connection-timeout: 5000
+    read-timeout: 2000
+
+server:
+  port: 8888
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    ru.kmao.saga.sagacoordinator: DEBUG
+
+spring.quartz.job-store-type: jdbc
+spring.quartz.jdbc.initialize-schema: never
+spring.quartz.saga.error-job.cron: ${SAGA_TRANSACTION_JOB_CRON:0/20 * * ? * * *}
+spring.quartz.saga.error-job.data-limit: 100
+spring.quartz.saga.error-job.transaction-attempts-to-recover: 5
+
+  
+spring.quartz.properties.org.quartz.scheduler.instanceName: saga-coordinator_cluster
+spring.quartz.properties.org.quartz.scheduler.instanceId: AUTO
+spring.quartz.properties.org.quartz.threadPool.threadCount: 20
+spring.quartz.properties.org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+spring.quartz.properties.org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+spring.quartz.properties.org.quartz.jobStore.useProperties: true
+spring.quartz.properties.org.quartz.jobStore.misfireThreshold: 60000
+spring.quartz.properties.org.quartz.jobStore.tablePrefix: qrtz_
+spring.quartz.properties.org.quartz.jobStore.isClustered: true
+spring.quartz.properties.org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
+spring.quartz.properties.org.quartz.plugin.shutdownHook.cleanShutdown: TRUE
+
+
+
+
+
+#org:
+#  quartz:
+#    scheduler:
+#      instanceId: AUTO
+#    threadPool:
+#      threadCount: 5
+#    plugin:
+#      shutdownhook:
+#        class: org.quartz.plugins.management.ShutdownHookPlugin
+#        cleanShutdown: TRUE
+#    jobStore:
+#      class: org.quartz.impl.jdbcjobstore.JobStoreTX
+#      driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+#      tablePrefix: my_schema.
+#      isClustered: true
+#      dataSource: myDataSource
+#    dataSource:
+#      myDataSource:
+#        driver: org.postgresql.Driver
+#        URL: jdbc:postgresql://localhost/myDataSource
+#        user: removed
+#        password: removed
